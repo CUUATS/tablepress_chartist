@@ -39,10 +39,8 @@ class TablePress_Chartist {
 	 * @var array
 	 */
 	protected static $shortcode_attributes = array(
-		'low'          => '',
-		'high'         => '',
-		'width'        => '',
-		'height'       => '',
+		'low'          => NULL,
+		'high'         => NULL,
 		'chart'        => 'line',
 		'showline'     => true,
 		'showarea'     => false,
@@ -120,7 +118,7 @@ class TablePress_Chartist {
 		// Pass all parameters to the template tag parameters.
 		foreach ( (array) $shortcode_atts as $attribute => $value ) {
 			// Prepend 'chartist_' to all Shortcode attributes that the Extension understands.
-			if ( isset( self::$shortcode_attributes[ $attribute ] ) ) {
+			if ( array_key_exists( $attribute, self::$shortcode_attributes ) ) {
 				$attribute = 'chartist_' . $attribute;
 			}
 			$table_query[ $attribute ] = $value;
