@@ -47,6 +47,7 @@ class TablePress_Chartist {
 		'showpoint'    => true,
 		'linesmooth'   => true,
 		'aspect_ratio' => '3:4',
+		'legend'			 => NULL,
 	);
 
 	/**
@@ -138,6 +139,7 @@ class TablePress_Chartist {
 		$dir = plugin_dir_url( __FILE__ );
 		wp_enqueue_script( 'chartist-js', $dir . 'libdist/chartist.min.js', array( 'jquery' ), self::$version, true );
 		wp_enqueue_style( 'chartist-css', $dir . 'libdist/chartist.min.css', array(), self::$version );
+		wp_enqueue_style( 'tablepress-chartist-css', $dir . 'tablepress-chartist.css', array(), self::$version );
 		if ( file_exists( WP_CONTENT_DIR . '/tablepress-chartist-custom.css' ) ) {
 			wp_enqueue_style( 'chartist-custom-css', content_url( 'tablepress-chartist-custom.css' ), array( 'chartist-css' ), self::$version );
 		}
@@ -175,6 +177,7 @@ class TablePress_Chartist {
 		}
 
 		$json_chart_options = array();
+		$legend_items = array();
 
 		// Determine/sanitize the chart type and add JS calculation functions.
 		switch ( strtolower( $render_options[ 'chartist_chart' ] ) ) {
@@ -202,6 +205,9 @@ class TablePress_Chartist {
 
 		// Convert all numeric table cell values to numeric variables, so that they show up as numbers in the JSON encoded string, as ChartistJS requires that.
 		foreach ( $table['data'] as $row_idx => $row ) {
+			if ( $render_options['chartist_legend'] ) {
+				$legend_items[] = array_shift($row);
+			}
 			foreach ( $row as $col_idx => $cell ) {
 				$table['data'][ $row_idx ][ $col_idx ] = self::_maybe_string_to_number( $cell );
 			}
@@ -259,6 +265,23 @@ JS;
 			$aspect_ratio
 		);
 
+		if ( $render_options['chartist_legend'] ) {
+			$chartist_legend = sprintf(
+				"<div id=\"%s\" class=\"ct-legend-container ct-legend-container-%s ct-legend-container-%s\">%s</div>\n",
+				"chartist-{$render_options['html_id']}-legend",
+				$render_options[ 'chartist_chart' ],
+				$render_options['chartist_legend'],
+				self::_generate_legend( $legend_items )
+			);
+			if ( $render_options['chartist_legend'] == 'top' ) {
+				$chartist_divtag = $chartist_legend . $chartist_divtag;
+			} elseif ( $render_options['chartist_legend'] == 'bottom' ) {
+				$chartist_divtag .= $chartist_legend;
+			}
+		}
+
+
+
 		return $chartist_divtag . $chartist_script;
 	}
 
@@ -280,6 +303,30 @@ JS;
 		} else {
 			return (float) $string;
 		}
+	}
+
+	/**
+	 * Generate the HTML for the legend.
+	 *
+	 * @since 0.7
+	 *
+	 * @param string[] $items Strings containing the legend items.
+	 * @return string HTML for the legend.
+	 */
+	protected static function _generate_legend( $items ) {
+
+		if ( empty($items) ) {
+			return '';
+		}
+
+		$output = '<span class="ct-legend-title">' . array_shift($items) . '</span><ul class="ct-legend">';
+		foreach ($items as $item_idx => $item) {
+			$output .= '<li class="ct-legend-item ct-legend-item-' . chr(97 + $item_idx) . '"><span class="ct-legend-symbol"></span><span class="ct-legend-label">' . $item . '</span></li>';
+		}
+		$output .= '</ul>';
+
+		return $output;
+
 	}
 
 } // class TablePress_Chartist

@@ -1,0 +1,81 @@
+/* Default legend style */
+.ct-legend-container-bottom {
+  margin-bottom: 1.5em;
+}
+
+.ct-legend-title {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.ct-legend-title::after {
+  content: ":";
+}
+
+.ct-legend {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ct-legend-item {
+  display: inline;
+  font-size: 0.8em;
+  margin-left: 1.5em;
+}
+
+.ct-legend-symbol {
+  background-color: #dddddd;
+  display: inline-block;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  width: 1em;
+}
+
+.ct-legend-item-a .ct-legend-symbol {
+  background-color: #d70206;
+}
+.ct-legend-item-b .ct-legend-symbol {
+  background-color: #f05b4f;
+}
+.ct-legend-item-c .ct-legend-symbol {
+  background-color: #f4c63d;
+}
+.ct-legend-item-d .ct-legend-symbol {
+  background-color: #d17905;
+}
+.ct-legend-item-e .ct-legend-symbol {
+  background-color: #453d3f;
+}
+.ct-legend-item-f .ct-legend-symbol {
+  background-color: #59922b;
+}
+.ct-legend-item-g .ct-legend-symbol {
+  background-color: #0544d3;
+}
+.ct-legend-item-h .ct-legend-symbol {
+  background-color: #6b0392;
+}
+.ct-legend-item-i .ct-legend-symbol {
+  background-color: #f05b4f;
+}
+.ct-legend-item-j .ct-legend-symbol {
+  background-color: #dda458;
+}
+.ct-legend-item-k .ct-legend-symbol {
+  background-color: #eacf7d;
+}
+.ct-legend-item-l .ct-legend-symbol {
+  background-color: #86797d;
+}
+.ct-legend-item-m .ct-legend-symbol {
+  background-color: #b2c326;
+}
+.ct-legend-item-n .ct-legend-symbol {
+  background-color: #6188e2;
+}
+.ct-legend-item-o .ct-legend-symbol {
+  background-color: #a748ca;
+}

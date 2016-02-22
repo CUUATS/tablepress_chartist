@@ -19,6 +19,7 @@ Add the Shortcode `[table-chart id=123 /]` to a post or page to create a chart f
 * Enable/disable line points: `showpoint=true` (default: true)
 * Set chart aspect ratio: `aspect_ratio=3:4` (default: 3:4) Alternatives: 1, 15:16, 8:9, 5:6, 4:5, 3:4, 2:3, 5:8, 1:1.618, 3:5, 9:16, 8:15, 1:2, 2:5, 3:8, 1:3, or 1:4
 * Select chart type: `chart=bar` (default: line) Alternatives: line, bar, pie, donut or percent.
+* Add a legend based on the first column of the table: `legend=top` or `legend=bottom` (default: no legend).
 
 If the "Table Head Row" option is enabled for the table, the Extension will use the head row data for the chart labels.
 The other rows will be shown as lines or bars. Pie or percent charts will only use the first data row. Percent charts will ignore the header row.
@@ -60,6 +61,7 @@ If you'd like to overide [the default style](http://gionkunz.github.io/chartist-
 1. When the plugin is installed, activate it.
 
 ##Changelog
+* 0.7 Add basic legend support and upgrade Chartist.js to 0.96.
 * 0.6 Switch to `[table-chart]` Shortcode.
 * 0.5.1 Revert to PHP json_encode().
 * 0.5 **Breaking change**: Simplified optional parameters (removed prefix `chartist_`), new optional parameters are: showline, showarea, low, high, linesmooth, showpoint and aspect_ratio. See examples in [screenshots](https://wordpress.org/plugins/tablepress-chartist/screenshots/). Added support for `chart=pie` and `chart=percent`.
