@@ -321,7 +321,7 @@ JS;
 
 		$output = '<span class="ct-legend-title">' . array_shift($items) . '</span><ul class="ct-legend">';
 		foreach ($items as $item_idx => $item) {
-			$output .= '<li class="ct-legend-item ct-legend-item-' . chr(97 + $item_idx) . '"><span class="ct-legend-symbol"></span><span class="ct-legend-label">' . $item . '</span></li>';
+			$output .= '<li class="ct-legend-item ct-legend-item-' . chr(97 + $item_idx) . '"><span class="ct-legend-symbol"></span><span class="ct-legend-label">' . $item . '</span></li> ';
 		}
 		$output .= '</ul>';
 

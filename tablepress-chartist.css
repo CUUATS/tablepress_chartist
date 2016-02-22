@@ -23,6 +23,7 @@
   display: inline;
   font-size: 0.8em;
   margin-left: 1.5em;
+  white-space: nowrap;
 }
 
 .ct-legend-symbol {
