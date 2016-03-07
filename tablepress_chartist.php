@@ -206,9 +206,9 @@ class TablePress_Chartist {
 		// Convert all numeric table cell values to numeric variables, so that they show up as numbers in the JSON encoded string, as ChartistJS requires that.
 		foreach ( $table['data'] as $row_idx => $row ) {
 			if ( $render_options['chartist_legend'] ) {
-				$legend_items[] = array_shift($row);
+				$legend_items[] = array_shift($table['data'][ $row_idx ]);
 			}
-			foreach ( $row as $col_idx => $cell ) {
+			foreach ( $table['data'][ $row_idx ] as $col_idx => $cell ) {
 				$table['data'][ $row_idx ][ $col_idx ] = self::_maybe_string_to_number( $cell );
 			}
 		}
