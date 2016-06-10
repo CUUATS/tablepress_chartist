@@ -257,6 +257,7 @@ class TablePress_Chartist {
 			'aspect_ratio' => $aspect_ratio,
 			'legend_position' => $render_options['chartist_legend'],
 			'legend_items' => $legend_items,
+			'table_name' => $table['name'],
 		));
 	}
 

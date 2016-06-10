@@ -1,8 +1,11 @@
-<div id="chartist-<?php echo $chart_id; ?>-wrapper" class="ct-wrapper">
+<aside role="complementary" id="chartist-<?php echo $chart_id; ?>-wrapper" class="ct-wrapper">
+  <?php if ( $table_name ): ?>
+    <h2 class="ct-title"><?php echo $table_name; ?></h2>
+  <?php endif; ?>
   <div id="chartist-<?php echo $chart_id; ?>"
-    class="ct-chart <?php echo $aspect_ratio; ?>"></div>
+    class="ct-chart <?php echo $aspect_ratio; ?>" aria-hidden="true"></div>
   <?php if ( $legend_position ): ?>
-    <div id="chartist-<?php echo $chart_id; ?>-legend"
+    <div id="chartist-<?php echo $chart_id; ?>-legend" aria-hidden="true"
       class="ct-legend-container ct-legend-container-<?php echo $chart_type; ?> ct-legend-container-<?php echo $legend_position; ?>">
       <?php if ( !empty($legend_items) ): ?>
         <span class="ct-legend-title"><?php echo array_shift($legend_items); ?></span>
@@ -21,4 +24,4 @@
         '#chartist-<?php echo $chart_id; ?>', <?php echo $chart_data; ?>, <?php echo $chart_options; ?>);
     });
   </script>
-</div>
+</aside>

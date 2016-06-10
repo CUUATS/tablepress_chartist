@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.ct-title {
+  order: -2;
+}
+
 /* Default legend style */
 .ct-legend-container-bottom {
   margin-bottom: 1.5em;
