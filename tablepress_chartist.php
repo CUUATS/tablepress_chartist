@@ -248,41 +248,34 @@ class TablePress_Chartist {
 			$aspect_ratio = self::$aspect_ratios[ $render_options[ 'chartist_aspect_ratio'] ];
 		}
 
-		$chartist_script = <<<JS
-<script type="text/javascript">
-jQuery(document).ready(function(){
-	var	data = {$json_chart_data},
-		options = {$json_chart_options},
-		sum = function( a, b ) { return a + b; };
-	new Chartist.{$chart}( '#chartist-{$render_options['html_id']}', data, options );
-});
-</script>
-JS;
+		return self::_render_template('chart.php', array(
+			'chart' => $chart,
+			'chart_type' => $render_options['chartist_chart'],
+			'chart_id' => $render_options['html_id'],
+			'chart_data' => $json_chart_data,
+			'chart_options' => $json_chart_options,
+			'aspect_ratio' => $aspect_ratio,
+			'legend_position' => $render_options['chartist_legend'],
+			'legend_items' => $legend_items,
+		));
+	}
 
-		$chartist_divtag = sprintf(
-			"<div id=\"%s\" class=\"ct-chart %s\"></div>\n",
-			"chartist-{$render_options['html_id']}",
-			$aspect_ratio
-		);
-
-		if ( $render_options['chartist_legend'] ) {
-			$chartist_legend = sprintf(
-				"<div id=\"%s\" class=\"ct-legend-container ct-legend-container-%s ct-legend-container-%s\">%s</div>\n",
-				"chartist-{$render_options['html_id']}-legend",
-				$render_options[ 'chartist_chart' ],
-				$render_options['chartist_legend'],
-				self::_generate_legend( $legend_items )
-			);
-			if ( $render_options['chartist_legend'] == 'top' ) {
-				$chartist_divtag = $chartist_legend . $chartist_divtag;
-			} elseif ( $render_options['chartist_legend'] == 'bottom' ) {
-				$chartist_divtag .= $chartist_legend;
-			}
-		}
-
-
-
-		return $chartist_divtag . $chartist_script;
+	/**
+	 * Render a PHP template to a string.
+	 *
+	 * @since 0.6
+	 *
+	 * @param string $template The path to the template.
+	 * @param array $params Parameters used to render the template.
+	 * @return string The rendered template.
+	 */
+	protected static function _render_template($template, $params) {
+		ob_start();
+		extract($params, EXTR_SKIP);
+		include($template);
+		$result = ob_get_contents();
+		ob_end_clean();
+		return $result;
 	}
 
 	/**
@@ -303,30 +296,6 @@ JS;
 		} else {
 			return (float) $string;
 		}
-	}
-
-	/**
-	 * Generate the HTML for the legend.
-	 *
-	 * @since 0.7
-	 *
-	 * @param string[] $items Strings containing the legend items.
-	 * @return string HTML for the legend.
-	 */
-	protected static function _generate_legend( $items ) {
-
-		if ( empty($items) ) {
-			return '';
-		}
-
-		$output = '<span class="ct-legend-title">' . array_shift($items) . '</span><ul class="ct-legend">';
-		foreach ($items as $item_idx => $item) {
-			$output .= '<li class="ct-legend-item ct-legend-item-' . chr(97 + $item_idx) . '"><span class="ct-legend-symbol"></span><span class="ct-legend-label">' . $item . '</span></li> ';
-		}
-		$output .= '</ul>';
-
-		return $output;
-
 	}
 
 } // class TablePress_Chartist

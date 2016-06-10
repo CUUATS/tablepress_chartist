@@ -1,6 +1,15 @@
+.ct-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Default legend style */
 .ct-legend-container-bottom {
   margin-bottom: 1.5em;
+}
+
+.ct-legend-container-top {
+  order: -1;
 }
 
 .ct-legend-title {
