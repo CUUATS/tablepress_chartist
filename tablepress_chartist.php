@@ -48,6 +48,7 @@ class TablePress_Chartist {
 		'linesmooth'   => true,
 		'aspect_ratio' => '3:4',
 		'legend'			 => NULL,
+		'position'		 => 'full',
 	);
 
 	/**
@@ -250,14 +251,15 @@ class TablePress_Chartist {
 
 		return self::_render_template('chart.php', array(
 			'chart' => $chart,
-			'chart_type' => $render_options['chartist_chart'],
-			'chart_id' => $render_options['html_id'],
+			'chart_type' => esc_attr($render_options['chartist_chart']),
+			'chart_id' => esc_attr($render_options['html_id']),
 			'chart_data' => $json_chart_data,
 			'chart_options' => $json_chart_options,
-			'aspect_ratio' => $aspect_ratio,
-			'legend_position' => $render_options['chartist_legend'],
+			'aspect_ratio' => esc_attr($aspect_ratio),
+			'position' => esc_attr($render_options['chartist_position']),
+			'legend_position' => esc_attr($render_options['chartist_legend']),
 			'legend_items' => $legend_items,
-			'table_name' => $table['name'],
+			'table_name' => esc_html($table['name']),
 		));
 	}
 

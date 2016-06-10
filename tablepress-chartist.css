@@ -3,6 +3,21 @@
   flex-direction: column;
 }
 
+.ct-position-left {
+  clear: both;
+  float: left;
+}
+
+.ct-position-right {
+  clear: both;
+  float: right;
+}
+
+.ct-position-center {
+  clear: both;
+  margin: 0 auto;
+}
+
 .ct-title {
   order: -2;
 }

@@ -1,4 +1,5 @@
-<aside role="complementary" id="chartist-<?php echo $chart_id; ?>-wrapper" class="ct-wrapper">
+<aside role="complementary" id="chartist-<?php echo $chart_id; ?>-wrapper"
+  class="ct-wrapper ct-position-<?php echo $position; ?>">
   <?php if ( $table_name ): ?>
     <h2 class="ct-title"><?php echo $table_name; ?></h2>
   <?php endif; ?>
